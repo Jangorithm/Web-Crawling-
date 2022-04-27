@@ -1,0 +1,12 @@
+soup.select_one('p') # 태그 이름만 특정
+soup.select_one('.cname') # 태그 class 특정
+soup.select_one('p.cname') # 태그 이름, class 특정
+soup.select_one('#idname') # 태그 id 특정
+soup.select_one('p#idname') # 태그와 id 모두 특정
+soup.select_one('p.cname#idname') # 모두 특정
+
+parsed_tagdata = BeautifulSoup(tagdata) # <p ~ /p> 데이터를 가져옴
+parsed_tagdata.find(‘p’)# index-div 클래스가 속한 element를 가져옴
+parsed_tagdata.find(class_='index-div’)# whoarewe 아이디가 속한 element를 가져옴
+parsed_tagdata.find(id='whoarewe’)# 여러 <p> 데이터 중에서 id가 whoarewe 인 데이터를 가져옴
+parsed_tagdata.find('p', class_='index-div’)
