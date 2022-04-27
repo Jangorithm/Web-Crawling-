@@ -1,0 +1,21 @@
+#환전 웹크롤링
+import requests
+from bs4 import BeautifulSoup as bs
+
+url = "https://finance.naver.com/marketindex/exchangeList.naver" 
+web = requests.get(url, headers={"User-Agent":"Mozilla/5.0"}) 
+webtext = web.text
+
+parsed_webdata = bs(webtext, 'html.parser')
+frame = parsed_webdata.select('body > div > table > tbody > tr ')
+
+for tr in frame:
+    country = tr.select('td')[0].text
+    sale = tr.select('td')[1].text
+    buy = tr.select('td')[2].text
+    sell = tr.select('td')[3].text
+    send = tr.select('td')[4].text
+    accept = tr.select('td')[5].text
+    
+    
+    print("국가 : {0} 매매기준율 : {1}, 사실 때 : {2}, 파실 때 : {3}, 보내실 때 : {4}, 받으실 때 : {5}".format(country,sale,buy,sell,send,accept))
